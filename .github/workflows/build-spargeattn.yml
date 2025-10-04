@@ -62,15 +62,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      # MSVC 14.43 and 14.44 do not work, see https://developercommunity.visualstudio.com/t/10912960
-      - name: Install MSVC v14.42
-        shell: powershell
-        run: |
-          Invoke-WebRequest -Uri https://github.com/Data-Oriented-House/PortableBuildTools/releases/download/v2.10.2/PortableBuildTools.exe -OutFile .\PortableBuildTools.exe
-          .\PortableBuildTools.exe accept_license msvc=14.42.17.12 sdk=26100 target=x64 host=x64 env=none path="C:\BuildTools"
-
-      # - uses: ilammy/msvc-dev-cmd@v1
-
       # https://github.com/Jimver/cuda-toolkit/issues/395
       # - uses: Jimver/cuda-toolkit@v0.2.22
       - uses: N-Storm/cuda-toolkit@v0.2.28
@@ -78,11 +69,11 @@ jobs:
           cuda: ${{ inputs.cuda_major }}.${{ inputs.cuda_minor }}.${{ inputs.cuda_patch }}
           use-github-cache: false
 
+      - uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build wheel
         shell: powershell
         run: |
-          C:\BuildTools\devcmd.ps1
-
           # Get-ChildItem Env:
           # (Get-WmiObject Win32_Processor).Name
           # (Get-WmiObject Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1GB
