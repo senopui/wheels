@@ -37,11 +37,9 @@ jobs:
   build-triton:
     runs-on: windows-large
     steps:
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-
-      # - uses: Jimver/cuda-toolkit@v0.2.22
 
       - uses: ilammy/msvc-dev-cmd@v1
 
