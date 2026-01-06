@@ -40,7 +40,7 @@ on:
 
 jobs:
   build-triton:
-    runs-on: windows-large
+    runs-on: self-hosted
     steps:
       - uses: actions/setup-python@v6
         with:
