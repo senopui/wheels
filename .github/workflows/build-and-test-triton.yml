@@ -24,7 +24,7 @@ on:
 
 jobs:
   build-and-test-triton:
-    runs-on: windows-a10
+    runs-on: self-hosted
     steps:
       - name: Create venv
         shell: powershell
